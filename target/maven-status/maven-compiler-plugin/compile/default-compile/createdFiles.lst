@@ -1,0 +1,9 @@
+foo/pac/domains/ErrorPayload.class
+foo/pac/endpoints/PingEndpoint.class
+foo/pac/endpoints/NetworkEndpoint.class
+foo/pac/endpoints/ServiceEndpoint.class
+foo/pac/endpoints/FIleTextEndpoint.class
+foo/pac/JerseyConfig.class
+foo/pac/ApplicationMain.class
+foo/pac/domains/ReplyPayload.class
+foo/pac/endpoints/DirEndpoint.class
