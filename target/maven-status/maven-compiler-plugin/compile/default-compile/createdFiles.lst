@@ -1,4 +1,5 @@
 foo/pac/domains/ErrorPayload.class
+foo/pac/endpoints/FIleXmlEndpoint.class
 foo/pac/endpoints/PingEndpoint.class
 foo/pac/endpoints/NetworkEndpoint.class
 foo/pac/endpoints/ServiceEndpoint.class

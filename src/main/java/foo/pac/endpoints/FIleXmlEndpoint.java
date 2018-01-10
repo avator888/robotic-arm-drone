@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("/")
-public class FIleTextEndpoint {
+public class FIleXmlEndpoint {
 
     /**
      * read text file
@@ -22,12 +22,13 @@ public class FIleTextEndpoint {
      * @return
      */
     @GET
-    @Path("/txtfile")
+    @Path("/xmlfile")
     @Produces(MediaType.TEXT_PLAIN)
     public Response file(@QueryParam("path") String p) {
 
         // prepare some object for reply
         StringBuilder result = new StringBuilder();
+        result.append("<textarea rows=\"50\" cols=\"150\" style=\"border:none;\">");
 
         // do some work
         File f;
@@ -49,7 +50,7 @@ public class FIleTextEndpoint {
                 br = new BufferedReader(new FileReader(p));
 
                 while ((sCurrentLine = br.readLine()) != null) {
-                    result.append("</br>");
+                    result.append("\n");
                     result.append(sCurrentLine);
                 }
 
@@ -73,6 +74,7 @@ public class FIleTextEndpoint {
         }
 
         // show result
+        result.append("</textarea>");
         Response response = Response.ok(result.toString(), MediaType.TEXT_HTML).build();
         return response;
     }

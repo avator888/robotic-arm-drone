@@ -15,7 +15,8 @@ import javax.ws.rs.core.Response;
 public class DirEndpoint {
 
     private final String folderBase = "http://localhost:{port}/rad/dir/?path=";
-    private final String fileBase = "http://localhost:{port}/rad/file/?path=";
+    private final String fileTxtBase = "http://localhost:{port}/rad/txtfile/?path=";
+    private final String fileXmlBase = "http://localhost:{port}/rad/xmlfile/?path=";
 
     /**
      * get list of files in specific folder
@@ -62,17 +63,40 @@ public class DirEndpoint {
             for (File path : paths) {
                 result.append("\n</br>");
                 if (path.isDirectory()) {
-
-                    // TODO: handle different type of files there
                     result.append("<a href=\"")
                             .append(folderBase.replace("localhost", this.getIp()).replace("{port}", getPort()))
                             .append(path).append("\">")
                             .append(path).append("</a>");
                 } else {
-                    result.append("<a href=\"")
-                            .append(fileBase.replace("localhost", this.getIp()).replace("{port}", getPort()))
-                            .append(path).append("\">")
-                            .append(path).append("</a>");
+                    String extention = this.getFileExtension(path);
+
+                    if (extention.equals("log")
+                            || extention.equals("txt")
+                            || extention.equals("bash")) {
+                        // text file
+                        result.append("<a href=\"")
+                                .append(fileTxtBase.replace("localhost", this.getIp()).replace("{port}", getPort()))
+                                .append(path).append("\">")
+                                .append(path).append("</a>");
+                    } else if (extention.equals("xml")) {
+                        // xml file
+                        result.append("<a href=\"")
+                                .append(fileXmlBase.replace("localhost", this.getIp()).replace("{port}", getPort()))
+                                .append(path).append("\">")
+                                .append(path).append("</a>");
+                    } else if (extention.equals("gz")) {
+                        // arc file
+                        result.append("<a href=\"")
+                                //.append(fileXmlBase.replace("localhost", this.getIp()).replace("{port}", getPort()))
+                                .append(path)
+                                .append("\" ")
+                                .append("download=\"w3logo\"")
+                                .append("\">")
+                                .append(path).append("</a>");
+                    } else {
+                        result.append(path);
+                    }
+
                 }
 
             }
@@ -99,5 +123,14 @@ public class DirEndpoint {
 
     private String getPort() {
         return "8080";
+    }
+
+    private String getFileExtension(File file) {
+        String name = file.getName();
+        try {
+            return name.substring(name.lastIndexOf(".") + 1).toLowerCase();
+        } catch (Exception e) {
+            return "";
+        }
     }
 }

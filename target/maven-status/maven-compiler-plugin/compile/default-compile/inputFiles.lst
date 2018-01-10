@@ -6,4 +6,5 @@
 /home/avator/dev/rad/src/main/java/foo/pac/JerseyConfig.java
 /home/avator/dev/rad/src/main/java/foo/pac/endpoints/ServiceEndpoint.java
 /home/avator/dev/rad/src/main/java/foo/pac/ApplicationMain.java
+/home/avator/dev/rad/src/main/java/foo/pac/endpoints/FIleXmlEndpoint.java
 /home/avator/dev/rad/src/main/java/foo/pac/endpoints/DirEndpoint.java
