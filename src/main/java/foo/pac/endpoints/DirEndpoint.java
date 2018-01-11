@@ -14,9 +14,9 @@ import javax.ws.rs.core.Response;
 @Path("/")
 public class DirEndpoint {
 
-    private final String folderBase = "http://localhost:{port}/rad/dir/?path=";
-    private final String fileTxtBase = "http://localhost:{port}/rad/txtfile/?path=";
-    private final String fileXmlBase = "http://localhost:{port}/rad/xmlfile/?path=";
+    private final String folderBase = "https://localhost:{port}/rad/dir/?path=";
+    private final String fileTxtBase = "https://localhost:{port}/rad/txtfile/?path=";
+    private final String fileXmlBase = "https://localhost:{port}/rad/xmlfile/?path=";
 
     /**
      * get list of files in specific folder
