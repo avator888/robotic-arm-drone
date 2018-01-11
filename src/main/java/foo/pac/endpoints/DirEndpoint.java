@@ -86,13 +86,14 @@ public class DirEndpoint {
                                 .append(path).append("</a>");
                     } else if (extention.equals("gz")) {
                         // arc file
-                        result.append("<a href=\"")
-                                //.append(fileXmlBase.replace("localhost", this.getIp()).replace("{port}", getPort()))
-                                .append(path)
-                                .append("\" ")
-                                .append("download=\"w3logo\"")
-                                .append("\">")
-                                .append(path).append("</a>");
+//                        result.append("<a href=\"")
+//                                //.append(fileXmlBase.replace("localhost", this.getIp()).replace("{port}", getPort()))
+//                                .append(path)
+//                                .append("\" ")
+//                                .append("download=\"w3logo\"")
+//                                .append("\">")
+//                                .append(path).append("</a>");
+                        result.append(path);
                     } else {
                         result.append(path);
                     }
@@ -112,13 +113,15 @@ public class DirEndpoint {
 
     /**
      *
-     * get ip
+     * get ip or translate internal ip to external
      *
-     * @return
-     * @throws UnknownHostException
      */
     private String getIp() throws UnknownHostException {
-        return InetAddress.getLocalHost().getHostAddress();
+        String ip = InetAddress.getLocalHost().getHostAddress();
+        if (ip.equals("localhost")) {
+            return "127.0.0.1";
+        }
+        return ip;
     }
 
     private String getPort() {
