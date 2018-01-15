@@ -2,7 +2,6 @@ package foo.pac.endpoints;
 
 import foo.pac.domains.ErrorPayload;
 import java.io.File;
-import java.net.InetAddress;
 import java.net.UnknownHostException;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -14,15 +13,14 @@ import javax.ws.rs.core.Response;
 @Path("/")
 public class DirEndpoint {
 
-    private final String folderBase = "https://localhost:{port}/rad/dir/?path=";
-    private final String fileTxtBase = "https://localhost:{port}/rad/txtfile/?path=";
-    private final String fileXmlBase = "https://localhost:{port}/rad/xmlfile/?path=";
+    private final String folderBase = "/rad/dir/?path=";
+    private final String fileTxtBase = "/rad/txtfile/?path=";
+    private final String fileXmlBase = "/rad/xmlfile/?path=";
 
     /**
      * get list of files in specific folder
      *
      */
-    // http://localhost:8080/rad/dir/?path=/home
     @GET
     @Path("/dir")
     @Produces({MediaType.TEXT_HTML})
@@ -52,7 +50,6 @@ public class DirEndpoint {
         }
 
         // create reply message
-        // plain text - console like
         StringBuilder result = new StringBuilder();
         result.append("get list of files for dir -> ");
         result.append("\n");
@@ -64,7 +61,7 @@ public class DirEndpoint {
                 result.append("\n</br>");
                 if (path.isDirectory()) {
                     result.append("<a href=\"")
-                            .append(folderBase.replace("localhost", this.getIp()).replace("{port}", getPort()))
+                            .append(folderBase.toLowerCase())
                             .append(path).append("\">")
                             .append(path).append("</a>");
                 } else {
@@ -75,24 +72,17 @@ public class DirEndpoint {
                             || extention.equals("bash")) {
                         // text file
                         result.append("<a href=\"")
-                                .append(fileTxtBase.replace("localhost", this.getIp()).replace("{port}", getPort()))
+                                .append(fileTxtBase.toLowerCase())
                                 .append(path).append("\">")
                                 .append(path).append("</a>");
                     } else if (extention.equals("xml")) {
                         // xml file
                         result.append("<a href=\"")
-                                .append(fileXmlBase.replace("localhost", this.getIp()).replace("{port}", getPort()))
+                                .append(fileXmlBase.toLowerCase())
                                 .append(path).append("\">")
                                 .append(path).append("</a>");
                     } else if (extention.equals("gz")) {
                         // arc file
-//                        result.append("<a href=\"")
-//                                //.append(fileXmlBase.replace("localhost", this.getIp()).replace("{port}", getPort()))
-//                                .append(path)
-//                                .append("\" ")
-//                                .append("download=\"w3logo\"")
-//                                .append("\">")
-//                                .append(path).append("</a>");
                         result.append(path);
                     } else {
                         result.append(path);
@@ -101,7 +91,7 @@ public class DirEndpoint {
                 }
 
             }
-        } catch (UnknownHostException ex) {
+        } catch (Exception ex) {
             Response response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("houston, we got problems: " + ex.getMessage()).build();
             return response;
         }
@@ -109,23 +99,6 @@ public class DirEndpoint {
         Response response = Response.ok(result.toString(), MediaType.TEXT_HTML).build();
         return response;
 
-    }
-
-    /**
-     *
-     * get ip or translate internal ip to external
-     *
-     */
-    private String getIp() throws UnknownHostException {
-        String ip = InetAddress.getLocalHost().getHostAddress();
-        if (ip.equals("localhost")) {
-            return "127.0.0.1";
-        }
-        return ip;
-    }
-
-    private String getPort() {
-        return "8080";
     }
 
     private String getFileExtension(File file) {
