@@ -15,9 +15,9 @@ import java.util.stream.Collectors;
 import javax.ws.rs.core.Response.Status;
 
 /**
- * 
+ *
  * checking that some service is up and running
- * 
+ *
  */
 @Path("/")
 public class ServiceEndpoint {
@@ -36,7 +36,9 @@ public class ServiceEndpoint {
     @Path("/service/{name}/start")
     @Produces({MediaType.TEXT_HTML})
     public Response start(@PathParam("name") String name) {
-        return exec(name, "start");
+        // return exec(name, "start");
+        Response response = Response.status(Status.BAD_REQUEST).entity(new ErrorPayload("commented out; think twice before actual usage")).build();
+        return response;
     }
 
     /**
@@ -46,7 +48,9 @@ public class ServiceEndpoint {
     @Path("/service/{name}/stop")
     @Produces({MediaType.TEXT_HTML})
     public Response stop(@PathParam("name") String name) {
-        return exec(name, "stop");
+//        return exec(name, "stop");
+        Response response = Response.status(Status.BAD_REQUEST).entity(new ErrorPayload("commented out; think twice before actual usage")).build();
+        return response;
     }
 
     private Response exec(String serviceName, String command) {
