@@ -4,6 +4,7 @@ basically it is https wrapper around common bash commands with 2-way-ssl encrypt
 
 TO-DO
  - add finctionality to read ssl key stores. at least jks and p12
+ - add bash script to start/restart application
 
 ps. 
   create using fedora and netbeans projects
