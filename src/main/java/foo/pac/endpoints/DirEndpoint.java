@@ -16,6 +16,7 @@ public class DirEndpoint {
     private final String folderBase = "/rad/dir/?path=";
     private final String fileTxtBase = "/rad/txtfile/?path=";
     private final String fileXmlBase = "/rad/xmlfile/?path=";
+    private final String fileArcBase = "/rad/arcfile/?path=";
 
     /**
      * get list of files in specific folder
@@ -81,9 +82,14 @@ public class DirEndpoint {
                                 .append(fileXmlBase.toLowerCase())
                                 .append(path).append("\">")
                                 .append(path).append("</a>");
-                    } else if (extention.equals("gz")) {
+                    } else if (extention.equals("gz")
+                            || extention.equals("rar")
+                            || extention.equals("zip")) {
                         // arc file
-                        result.append(path);
+                        result.append("<a href=\"")
+                                .append(fileArcBase.toLowerCase())
+                                .append(path).append("\">")
+                                .append(path).append("</a>");
                     } else {
                         result.append(path);
                     }

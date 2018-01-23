@@ -1,6 +1,7 @@
 package foo.pac;
 
 import foo.pac.endpoints.DirEndpoint;
+import foo.pac.endpoints.FIleArcEndpoint;
 import foo.pac.endpoints.FIleTextEndpoint;
 import foo.pac.endpoints.FIleXmlEndpoint;
 import foo.pac.endpoints.NetworkEndpoint;
@@ -25,8 +26,10 @@ public class JerseyConfig extends ResourceConfig {
         register(DirEndpoint.class);
         register(FIleTextEndpoint.class);
         register(FIleXmlEndpoint.class);
+        register(FIleArcEndpoint.class);
         register(ServiceEndpoint.class);
         register(NetworkEndpoint.class);
+
     }
 
 }
