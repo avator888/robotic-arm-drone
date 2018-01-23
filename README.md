@@ -1,17 +1,9 @@
 # robotic-arm-drone
 project created for implementation of break the glass process or firecall process
-basically it is http(s) wrapper around common bash commands
+basically it is https wrapper around common bash commands with 2-way-ssl encryption 
 
-ping
-curl
-netstat
-dir
- - test files
- - archives 
- - ssl certs
- 
- one way (or 2 way ssl)
- 
+TO-DO
+ - add finctionality to read ssl key stores. at least jks and p12
 
 ps. 
   create using fedora and netbeans projects
