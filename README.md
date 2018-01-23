@@ -7,5 +7,5 @@ TO-DO
  - add bash script to start/restart application
 
 ps. 
-  create using fedora and netbeans projects
+  created using fedora and netbeans projects
   thank you guys you are the best
