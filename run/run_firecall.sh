@@ -68,7 +68,7 @@ then
     #echo "START"
 
     # delete instance of app if it is running for whatever reason
-    PID=$(ps -Af | grep java | grep rad | awk '{ print $2 }');
+    PID=$(ps -Af | grep java | grep rad | grep -v netbeans | grep -v grep | awk '{ print $2 }');
     echo $PID
 
     if  [ "$PID" -eq "$PID" ] 2>/dev/null; then
@@ -98,12 +98,11 @@ then
    #echo "STOP"
 
    # delete instance of app if it is running for whatever reason
-   PID=$(ps -Af | grep java | grep rad | awk '{ print $2 }');
-   echo $PID
+   PID=$(ps -Af | grep java | grep rad | grep -v netbeans | grep -v grep | awk '{ print $2 }');
+   echo RAD process to kill $PID
 
    if  [ "$PID" -eq "$PID" ] 2>/dev/null; 
    then
-     echo $PID;
      kill -9 $PID;
    fi
 
